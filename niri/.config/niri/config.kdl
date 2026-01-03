@@ -75,18 +75,7 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
-    // Uncomment this line to disable this output.
-    // off
-
-    // Resolution and, optionally, refresh rate of the output.
-    // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
-    // If the refresh rate is omitted, niri will pick the highest refresh rate
-    // for the resolution.
-    // If the mode is omitted altogether or is invalid, niri will pick one automatically.
-    // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
-
+output "eDP-1" {
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 2
 
@@ -103,7 +92,27 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=0 y=0
+}
+
+output "DP-1" {
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 1
+
+    // Transform allows to rotate the output counter-clockwise, valid values are:
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Position of the output in the global coordinate space.
+    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+    // The cursor can only move between directly adjacent outputs.
+    // Output scale and rotation has to be taken into account for positioning:
+    // outputs are sized in logical, or scaled, pixels.
+    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+    // so to put another output directly adjacent to it on the right, set its x to 1920.
+    // If the position is unset or results in an overlap, the output is instead placed
+    // automatically.
+    position x=1440 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -120,7 +129,7 @@ layout {
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
     background-color "transparent"
-    center-focused-column "never"
+    // center-focused-column "never"
     always-center-single-column
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
@@ -273,21 +282,25 @@ environment {
     QT_IM_MODULE "fcitx"
     GTK_IM_MODULE "wayland"
     SDL_IM_MODULE "fcitx"
-    GLFW_IM_MODULE null
-    QT_QPA_PLATFORM "wayland;xcb"
-    GDK_BACKEND "wayland,x11"
     EDITOR "nvim"
 }
 spawn-at-startup "niri-switch-daemon"
+// input method
 spawn-at-startup "fcitx5" "-d"
+// global launcher
 spawn-at-startup "vicinae" "server"
-spawn-at-startup "~/.cargo/bin/soteria"
+// Role-Based Access Control
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+// lock tool
 spawn-at-startup "swayidle" "-w" \
     "timeout" "600" "hyprlock" \
     "timeout" "601" "niri msg action power-off-monitors" \
     "before-sleep" "hyprlock"
+// desktop bar
 spawn-at-startup "qs" "-c" "noctalia-shell"
+// background image
 spawn-sh-at-startup "swaybg -i /usr/share/wallpapers/Next/contents/images/5120x2880.png -m fill"
+// Proxy
 spawn-sh-at-startup "sudo mihomo -d ~/.config/mihomo"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -403,6 +416,18 @@ layer-rule {
 layer-rule {
     match namespace="^wallpaper$"
     place-within-backdrop true
+}
+
+window-rule {
+    // 匹配所有 Steam 相关窗口
+    match app-id="steam"
+    
+    // 排除掉那些不该被平铺的小工具窗口
+    match title="^$" // 匹配无标题窗口（通常是弹出菜单）
+    match title="^Steam - News"
+    match title="^Friends List"
+    draw-border-with-background false
+    open-floating true
 }
 
 binds {
