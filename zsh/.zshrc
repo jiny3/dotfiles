@@ -119,6 +119,12 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_NO_STORE
 
+# export
+export YSU_MESSAGE_POSITION="after"
+export BAT_CONFIG_PATH="$XDG_CONFIG_HOME:-~/.config/bat.conf"
+export PATH=$PATH:/usr/local/go/bin:~/.local/bin:~/.cargo/bin
+export EDITOR="nvim"
+
 # zoxide load
 eval "$(zoxide init zsh --cmd z)"
 # uv autocompletion
@@ -129,12 +135,7 @@ eval "$(uvx --generate-shell-completion zsh)"
 alias ls="eza --icons -a"
 alias ll="eza --icons --long --header"
 alias la="eza --icons --long --header --all"
+alias tree="eza --tree"
 alias fd="fdfind"
 alias sudo="sudo -E"
-
-# export
-export YSU_MESSAGE_POSITION="after"
-export BAT_CONFIG_PATH="$XDG_CONFIG_HOME:-~/.config/bat.conf"
-export PATH=$PATH:/usr/local/go/bin
-export EDITOR="nvim"
 
