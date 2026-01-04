@@ -1,3 +1,6 @@
+# starship load
+eval "$(starship init zsh)"
+
 # Start configuration added by Zim Framework install {{{
 #
 # User configuration sourced by interactive shells
@@ -106,9 +109,6 @@ source ${ZIM_HOME}/init.zsh
 # }}} End configuration added by Zim Framework install
 
 # Created by newuser for 5.9
-
-# starship load
-eval "$(starship init zsh)"
 
 # History settings
 HISTFILE="$HOME/.zhistory"
