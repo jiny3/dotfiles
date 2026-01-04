@@ -194,13 +194,13 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+        active-gradient from="#ffb7c5" to="#e05263" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
         //
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -279,10 +279,10 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 environment {
-    XMODIFIERS "@im=fcitx"
-    QT_IM_MODULE "fcitx"
-    GTK_IM_MODULE "wayland"
-    SDL_IM_MODULE "fcitx"
+    // XMODIFIERS "@im=fcitx"
+    // QT_IM_MODULE "fcitx"
+    // GTK_IM_MODULE "wayland"
+    // SDL_IM_MODULE "fcitx"
     EDITOR "nvim"
 }
 spawn-at-startup "niri-switch-daemon"
@@ -300,9 +300,7 @@ spawn-at-startup "swayidle" "-w" \
 // desktop bar
 spawn-at-startup "qs" "-c" "noctalia-shell"
 // background image
-spawn-sh-at-startup "swaybg -i /usr/share/wallpapers/Next/contents/images/5120x2880.png -m fill"
-// Proxy
-spawn-sh-at-startup "sudo mihomo -d ~/.config/mihomo"
+spawn-sh-at-startup "swaybg -i ~/.background -m fill"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -404,12 +402,6 @@ window-rule {
 window-rule {
     geometry-corner-radius 8
     clip-to-geometry true
-}
-
-// `niri msg layers`显示有namespace可以在这里配置waybar透明度
-layer-rule {
-    match namespace="^quickshell-overview$"
-    place-within-backdrop true
     opacity 0.9
 }
 
@@ -420,14 +412,7 @@ layer-rule {
 }
 
 window-rule {
-    // 匹配所有 Steam 相关窗口
-    match app-id="steam"
-    
-    // 排除掉那些不该被平铺的小工具窗口
-    match title="^$" // 匹配无标题窗口（通常是弹出菜单）
-    match title="^Steam - News"
-    match title="^Friends List"
-    draw-border-with-background false
+    match app-id="swayimg"
     open-floating true
 }
 
@@ -464,7 +449,7 @@ binds {
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
     // "-l 1.0" limits the volume to 100%.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.01+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
