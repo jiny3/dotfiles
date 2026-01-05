@@ -136,6 +136,5 @@ alias ls="eza --icons -a"
 alias ll="eza --icons --long --header"
 alias la="eza --icons --long --header --all"
 alias tree="eza --tree"
-alias fd="fdfind"
 alias sudo="sudo -E"
 
