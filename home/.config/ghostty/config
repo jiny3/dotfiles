@@ -1,3 +1,4 @@
 theme = GitHub Dark
 font-family = "Maple Mono NF CN"
-window-padding-x=10
+window-padding-x = 10
+initial-command = fastfetch --logo-color-1 magenta --logo-color-2 magenta --color magenta & exec zsh
