@@ -138,3 +138,5 @@ alias la="eza --icons --long --header --all"
 alias tree="eza --tree"
 alias sudo="sudo -E"
 
+# zvm
+bindkey -v
