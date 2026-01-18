@@ -294,6 +294,8 @@ spawn-at-startup "swayidle" "-w" \
 "before-sleep" "qs -c noctalia-shell ipc call lockScreen lock"
 // desktop bar
 spawn-at-startup "qs" "-c" "noctalia-shell"
+// rclone mount
+spawn-sh-at-startup "fusermount -u ~/ali; rclone mount alist:/ali ~/ali --vfs-cache-mode writes --vfs-cache-max-age 24h --vfs-read-chunk-size 64M --buffer-size 32M --dir-cache-time 24h --attr-timeout 1h --no-check-certificate --umask 000 --vfs-cache-max-size 10G --vfs-fast-fingerprint --header 'Referer:'"
 // run a terminal
 spawn-at-startup "ghostty"
 
