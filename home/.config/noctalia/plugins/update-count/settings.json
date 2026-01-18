@@ -1,6 +1,6 @@
 {
   "updateIntervalMinutes": 120,
-  "updateTerminalCommand": "foot -e",
+  "updateTerminalCommand": "ghostty -e",
   "currentIconName": "arrow-big-down-line-filled",
   "hideOnZero": false,
   "customCmdGetNumUpdates": "",
