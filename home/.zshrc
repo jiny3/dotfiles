@@ -136,7 +136,16 @@ alias ls="eza --icons -a"
 alias ll="eza --icons --long --header"
 alias la="eza --icons --long --header --all"
 alias tree="eza --tree"
-alias sudo="sudo -E"
+sudo() {
+    if [ $# -eq 0 ]; then
+        command sudo -E
+    elif [[ "$1" == -* ]]; then
+        command sudo "$@"
+    else
+        command sudo -E "$@"
+    fi
+}
+alias leetcode="nvim leetcode.nvim"
 
 # zvm
 bindkey -v
