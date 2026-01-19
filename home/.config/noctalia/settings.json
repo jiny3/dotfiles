@@ -142,6 +142,7 @@
                 },
                 {
                     "hideWhenZero": true,
+                    "hideWhenZeroUnread": true,
                     "id": "NotificationHistory",
                     "showUnreadBadge": true
                 }
@@ -170,6 +171,10 @@
                     "showNoctaliaPerformance": true,
                     "showPowerProfiles": true,
                     "warningThreshold": 20
+                },
+                {
+                    "displayMode": "onhover",
+                    "id": "Network"
                 },
                 {
                     "displayMode": "onhover",
@@ -281,20 +286,13 @@
         "shortcuts": {
             "left": [
                 {
-                    "id": "WiFi"
-                },
-                {
-                    "enableOnStateLogic": true,
-                    "generalTooltipText": "Mihomo",
-                    "icon": "cloud",
-                    "id": "CustomButton",
-                    "onClicked": "sh -c \"systemctl is-active --quiet mihomo && systemctl stop mihomo || systemctl start mihomo\"",
-                    "onMiddleClicked": "",
-                    "onRightClicked": "",
-                    "stateChecksJson": "[{\"command\":\"systemctl is-active --quiet mihomo\",\"icon\":\"cloud-filled\"}]"
+                    "id": "Network"
                 },
                 {
                     "id": "Bluetooth"
+                },
+                {
+                    "id": "PowerProfile"
                 },
                 {
                     "enableOnStateLogic": true,
@@ -309,13 +307,37 @@
             ],
             "right": [
                 {
+                    "enableOnStateLogic": true,
+                    "generalTooltipText": "Mihomo",
+                    "icon": "cloud",
+                    "id": "CustomButton",
+                    "onClicked": "sh -c \"systemctl is-active --quiet mihomo && systemctl stop mihomo || systemctl start mihomo\"",
+                    "onMiddleClicked": "",
+                    "onRightClicked": "",
+                    "stateChecksJson": "[{\"command\":\"systemctl is-active --quiet mihomo\",\"icon\":\"cloud-filled\"}]"
+                },
+                {
+                    "id": "Notifications"
+                },
+                {
+                    "defaultSettings": {
+                        "audioCodec": "opus",
+                        "audioSource": "default_output",
+                        "colorRange": "limited",
+                        "copyToClipboard": false,
+                        "directory": "",
+                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
+                        "frameRate": "60",
+                        "quality": "very_high",
+                        "resolution": "original",
+                        "showCursor": true,
+                        "videoCodec": "h264",
+                        "videoSource": "portal"
+                    },
+                    "id": "plugin:screen-recorder"
+                },
+                {
                     "id": "KeepAwake"
-                },
-                {
-                    "id": "WallpaperSelector"
-                },
-                {
-                    "id": "PowerProfile"
                 }
             ]
         }
@@ -414,6 +436,7 @@
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
         "enableKeyboardLayoutToast": true,
+        "enableMediaToast": false,
         "enabled": true,
         "location": "top_left",
         "lowUrgencyDuration": 3,
@@ -499,7 +522,7 @@
         "showHeader": true,
         "showNumberLabels": true
     },
-    "settingsVersion": 40,
+    "settingsVersion": 41,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 5000,
