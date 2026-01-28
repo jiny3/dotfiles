@@ -12,7 +12,8 @@
     "start-recording": "屏幕录像（开始录制）",
     "started": "已开始录制。",
     "stop-recording": "屏幕录像（停止录制）",
-    "stopping": "停止录制…"
+    "stopping": "停止录制…",
+    "open-file": "打开文件"
   },
   "name": "屏幕录制器",
   "settings": {

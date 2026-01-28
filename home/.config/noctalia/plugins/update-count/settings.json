@@ -3,6 +3,6 @@
   "updateTerminalCommand": "ghostty -e",
   "currentIconName": "arrow-big-down-line-filled",
   "hideOnZero": false,
-  "customCmdGetNumUpdates": "",
-  "customCmdDoSystemUpdate": ""
+  "customCmdGetNumUpdates": "paru -Quq 2>/dev/null | wc -l",
+  "customCmdDoSystemUpdate": "paru -Syu"
 }
