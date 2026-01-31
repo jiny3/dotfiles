@@ -112,12 +112,20 @@ source ${ZIM_HOME}/init.zsh
 
 # History settings
 HISTFILE="$HOME/.zhistory"
-HISTORY_IGNORE="(ls|cd|rm|x)"
-setopt EXTENDED_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_NO_STORE
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt EXTENDED_HISTORY       # 记录时间戳
+setopt HIST_IGNORE_ALL_DUPS   # 删除重复项，只保留最新的
+setopt HIST_SAVE_NO_DUPS      # 保存文件时不存重复项
+setopt HIST_EXPIRE_DUPS_FIRST # 空间不足时先删重复的
+
+setopt INC_APPEND_HISTORY     # 立即追加写入，防止掉电丢失
+setopt SHARE_HISTORY          # 多窗口实时同步历史
+setopt HIST_REDUCE_BLANKS     # 自动删除多余空格
+
+setopt HIST_IGNORE_SPACE      # 命令前加空格则不记录
+setopt HIST_NO_STORE          # 不记录 history 命令本身
 
 # export
 export YSU_MESSAGE_POSITION="after"
