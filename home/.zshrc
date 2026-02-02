@@ -154,6 +154,7 @@ sudo() {
     fi
 }
 alias leetcode="nvim leetcode.nvim"
+alias rmx="trash-put"
 
 # zvm
 bindkey -v
