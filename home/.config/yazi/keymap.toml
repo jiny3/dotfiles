@@ -1,0 +1,59 @@
+[mgr]
+prepend_keymap = [
+    # archive selected files
+    { on = "A", run = "plugin compress", desc = "Archive selected files" },
+
+    # copy actions
+    { on = [
+        "C",
+        "c",
+    ], run = "copy path", desc = "Copy the file path" },
+    { on = [
+        "C",
+        "d",
+    ], run = "copy dirname", desc = "Copy the directory path" },
+    { on = [
+        "C",
+        "f",
+    ], run = "copy filename", desc = "Copy the filename" },
+    { on = [
+        "C",
+        "n",
+    ], run = "copy name_without_ext", desc = "Copy the filename without extension" },
+    { on = [
+        "C",
+        "t",
+    ], run = "plugin copy-file-contents", desc = "Copy the contents of file" },
+
+    # change actions
+    { on = [
+        "c",
+        "m",
+    ], run = "plugin chmod", desc = "Chmod on selected files" },
+
+    # delete actions
+    { on = [
+        "d",
+        "d",
+    ], run = "remove", desc = "Delete the selected (Trash)" },
+    { on = [
+        "d",
+        "D",
+    ], run = "remove --permanently", desc = "Delete the selected (Permanent)" },
+    { on = [
+        "d",
+        "u",
+    ], run = "plugin restore", desc = "Restore last deleted actions" },
+
+    # Select files/folders to restore. Input item index or range separated by comma:
+    # - Restore a trashed file:
+    #      What file to restore [0..4]: 4
+    # - Restore multiple trashed files separated by comma, also support range:
+    #      What file to restore [0..3]: 0-2, 3
+
+    # This will throw error when there is existed file/folder
+    { on = [
+        "d",
+        "U",
+    ], run = "plugin restore -- --interactive", desc = "Restore deleted (Interactive)" },
+]
