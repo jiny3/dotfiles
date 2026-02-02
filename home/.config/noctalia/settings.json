@@ -259,7 +259,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Rosey AMOLED",
+        "predefinedScheme": "Catppuccin",
         "schedulingMode": "location",
         "useWallpaperColors": false
     },
@@ -565,6 +565,10 @@
     },
     "templates": {
         "activeTemplates": [
+            {
+                "enabled": true,
+                "id": "zenBrowser"
+            }
         ],
         "enableUserTheming": false
     },
