@@ -14,11 +14,6 @@ rev = "cb6e8ec"
 hash = "424ada4807b20ccd4fc85d1d7c26d1e4"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:full-border"
-rev = "230b9c6"
-hash = "3996fc74044bc44144b323686f887e1"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
 rev = "230b9c6"
 hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
@@ -39,9 +34,16 @@ rev = "da38c3e"
 hash = "5a691c4fb17201eab2edb94643d324ae"
 
 [[plugin.deps]]
-use = "llanosrocas/yaziline"
-rev = "d9cc2cb"
-hash = "b6073aadf2f9a1d5389a6d389f33f69c"
+use = "yazi-rs/plugins:full-border"
+rev = "230b9c6"
+hash = "3996fc74044bc44144b323686f887e1"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "9e053d0"
+hash = "8eabb4e88096f10905a6df62cfaadbf4"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "9e053d0"
+hash = "c6b710b2aa0fb9c6c7f1ec4db6146104"
