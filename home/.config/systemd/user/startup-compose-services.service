@@ -1,0 +1,18 @@
+[Unit]
+Description=x's Podman Compose Services (Caddy, Vaultwarden, Alist)
+Documentation=man:podman-compose(1)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/x/dotfiles/podman
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+ExecStart=podman compose up -d
+ExecStop=podman compose down
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target
