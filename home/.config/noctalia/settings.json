@@ -60,6 +60,13 @@
         "widgets": {
             "center": [
                 {
+                    "defaultSettings": {
+                        "hideBackground": false,
+                        "minimumThreshold": 10
+                    },
+                    "id": "plugin:catwalk"
+                },
+                {
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
@@ -348,6 +355,8 @@
                         "directory": "",
                         "filenamePattern": "recording_yyyyMMdd_HHmmss",
                         "frameRate": "60",
+                        "hideInactive": false,
+                        "iconColor": "none",
                         "quality": "very_high",
                         "resolution": "original",
                         "showCursor": true,

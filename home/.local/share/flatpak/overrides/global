@@ -1,0 +1,9 @@
+[Context]
+devices=dri
+filesystems=xdg-config/fontconfig:ro
+
+[Environment]
+QT_IM_MODULE=fcitx
+
+[Session Bus Policy]
+org.fcitx.Fcitx5=talk
