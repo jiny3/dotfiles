@@ -12,7 +12,7 @@
         "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
-        "iconMode": "tabler",
+        "iconMode": "native",
         "ignoreMouseInput": false,
         "overviewLayer": false,
         "pinnedApps": [
@@ -22,7 +22,7 @@
         "showCategories": true,
         "showIconBackground": true,
         "sortByMostUsed": true,
-        "terminalCommand": "xterm -e",
+        "terminalCommand": "ghostty -e",
         "useApp2Unit": false,
         "viewMode": "list"
     },
@@ -81,40 +81,6 @@
                 }
             ],
             "left": [
-                {
-                    "colorizeSystemIcon": "none",
-                    "enableColorization": false,
-                    "generalTooltipText": "",
-                    "hideMode": "alwaysExpanded",
-                    "icon": "rocket",
-                    "id": "CustomButton",
-                    "ipcIdentifier": "",
-                    "leftClickExec": "qs -c noctalia-shell ipc call launcher toggle",
-                    "leftClickUpdateText": false,
-                    "maxTextLength": {
-                        "horizontal": 10,
-                        "vertical": 10
-                    },
-                    "middleClickExec": "",
-                    "middleClickUpdateText": false,
-                    "parseJson": false,
-                    "rightClickExec": "",
-                    "rightClickUpdateText": false,
-                    "showExecTooltip": true,
-                    "showIcon": true,
-                    "showTextTooltip": true,
-                    "textCollapse": "",
-                    "textCommand": "",
-                    "textIntervalMs": 3000,
-                    "textStream": false,
-                    "wheelDownExec": "",
-                    "wheelDownUpdateText": false,
-                    "wheelExec": "",
-                    "wheelMode": "unified",
-                    "wheelUpExec": "",
-                    "wheelUpUpdateText": false,
-                    "wheelUpdateText": false
-                },
                 {
                     "compactMode": true,
                     "diskPath": "/",
@@ -328,29 +294,31 @@
                     "id": "PowerProfile"
                 },
                 {
-                    "enableOnStateLogic": true,
-                    "generalTooltipText": "Dark Mode",
-                    "icon": "moon",
-                    "id": "CustomButton",
-                    "onClicked": "qs -c noctalia-shell ipc call darkMode toggle",
-                    "onMiddleClicked": "",
-                    "onRightClicked": "",
-                    "stateChecksJson": "[{\"command\":\"~/.local/share/noctalia/get.sh\",\"icon\":\"moon-filled\"}]"
+                    "id": "Notifications"
                 }
             ],
             "right": [
                 {
                     "enableOnStateLogic": true,
                     "generalTooltipText": "Mihomo",
-                    "icon": "cloud",
+                    "icon": "cloud-off",
                     "id": "CustomButton",
                     "onClicked": "sh -c \"systemctl is-active --quiet mihomo && systemctl stop mihomo || systemctl start mihomo\"",
                     "onMiddleClicked": "",
                     "onRightClicked": "",
-                    "stateChecksJson": "[{\"command\":\"systemctl is-active --quiet mihomo\",\"icon\":\"cloud-filled\"}]"
+                    "showExecTooltip": true,
+                    "stateChecksJson": "[{\"command\":\"systemctl is-active --quiet mihomo\",\"icon\":\"cloud\"}]"
                 },
                 {
-                    "id": "Notifications"
+                    "enableOnStateLogic": true,
+                    "generalTooltipText": "Dark Mode",
+                    "icon": "moon-off",
+                    "id": "CustomButton",
+                    "onClicked": "qs -c noctalia-shell ipc call darkMode toggle",
+                    "onMiddleClicked": "",
+                    "onRightClicked": "",
+                    "showExecTooltip": true,
+                    "stateChecksJson": "[{\"command\":\"~/.local/share/noctalia/get.sh\",\"icon\":\"moon\"}]"
                 },
                 {
                     "defaultSettings": {
@@ -372,7 +340,7 @@
                     "id": "plugin:screen-recorder"
                 },
                 {
-                    "id": "KeepAwake"
+                    "id": "AirplaneMode"
                 }
             ]
         }
@@ -390,7 +358,7 @@
         "deadOpacity": 0.6,
         "displayMode": "auto_hide",
         "dockType": "floating",
-        "enabled": true,
+        "enabled": false,
         "floatingRatio": 1,
         "inactiveIndicators": false,
         "monitors": [
