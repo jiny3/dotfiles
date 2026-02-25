@@ -285,8 +285,6 @@ environment {
 spawn-at-startup "niri-switch-daemon"
 // input method
 spawn-at-startup "fcitx5" "-d"
-// Role-Based Access Control
-spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 // lock tool
 spawn-at-startup "swayidle" "-w" \
 "timeout" "600" "qs -c noctalia-shell ipc call lockScreen lock" \
