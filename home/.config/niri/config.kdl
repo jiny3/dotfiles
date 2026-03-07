@@ -285,11 +285,6 @@ environment {
 spawn-at-startup "niri-switch-daemon"
 // input method
 spawn-at-startup "fcitx5" "-d"
-// lock tool
-spawn-at-startup "swayidle" "-w" \
-"timeout" "600" "qs -c noctalia-shell ipc call lockScreen lock" \
-"timeout" "601" "niri msg action power-off-monitors" \
-"before-sleep" "qs -c noctalia-shell ipc call lockScreen lock"
 // desktop bar
 spawn-at-startup "qs" "-c" "noctalia-shell"
 // run a terminal
