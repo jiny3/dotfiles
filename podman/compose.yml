@@ -23,13 +23,13 @@ services:
       - UMASK=022
       - TZ=Asia/Shanghai
     restart: unless-stopped
-  vaultwarden:
-    image: ghcr.io/dani-garcia/vaultwarden:latest
-    container_name: vaultwarden
-    restart: unless-stopped
-    volumes:
-      - $HOME/.var/vaultwarden:/data
-    expose:
-      - 80
-    environment:
-      - DOMAIN=https://vault.arch
+  # vaultwarden:
+  #   image: ghcr.io/dani-garcia/vaultwarden:latest
+  #   container_name: vaultwarden
+  #   restart: unless-stopped
+  #   volumes:
+  #     - $HOME/.var/vaultwarden:/data
+  #   expose:
+  #     - 80
+  #   environment:
+  #     - DOMAIN=https://vault.arch
