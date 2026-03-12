@@ -27,10 +27,10 @@
         "viewMode": "list"
     },
     "audio": {
-        "cavaFrameRate": 30,
         "mprisBlacklist": [
         ],
         "preferredPlayer": "",
+        "spectrumFrameRate": 30,
         "visualizerType": "linear",
         "volumeFeedback": false,
         "volumeFeedbackSoundFile": "",
@@ -77,13 +77,6 @@
         "widgets": {
             "center": [
                 {
-                    "defaultSettings": {
-                        "hideBackground": false,
-                        "minimumThreshold": 10
-                    },
-                    "id": "plugin:catwalk"
-                },
-                {
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
@@ -92,20 +85,16 @@
                     "showIcon": true,
                     "textColor": "none",
                     "useFixedWidth": false
+                },
+                {
+                    "defaultSettings": {
+                        "hideBackground": false,
+                        "minimumThreshold": 10
+                    },
+                    "id": "plugin:catwalk"
                 }
             ],
             "left": [
-                {
-                    "defaultSettings": {
-                        "activeColor": "primary",
-                        "enableToast": true,
-                        "hideInactive": false,
-                        "iconSpacing": 4,
-                        "inactiveColor": "none",
-                        "removeMargins": false
-                    },
-                    "id": "plugin:privacy-indicator"
-                },
                 {
                     "compactMode": true,
                     "diskPath": "/",
@@ -129,21 +118,13 @@
                     "usePadding": false
                 },
                 {
-                    "defaultSettings": {
-                        "currentIconName": "world-download",
-                        "hideOnZero": false,
-                        "updateIntervalMinutes": 30,
-                        "updateTerminalCommand": "foot -e"
-                    },
-                    "id": "plugin:update-count"
-                },
-                {
                     "characterCount": 2,
                     "colorizeIcons": false,
                     "emptyColor": "secondary",
                     "enableScrollWheel": true,
                     "focusedColor": "primary",
                     "followFocusedScreen": false,
+                    "fontWeight": "bold",
                     "groupedBorderOpacity": 1,
                     "hideUnoccupied": false,
                     "iconScale": 0.8,
@@ -241,6 +222,45 @@
                 {
                     "iconColor": "error",
                     "id": "SessionMenu"
+                },
+                {
+                    "defaultSettings": {
+                        "activeColor": "primary",
+                        "enableToast": true,
+                        "hideInactive": false,
+                        "iconSpacing": 4,
+                        "inactiveColor": "none",
+                        "removeMargins": false
+                    },
+                    "id": "plugin:privacy-indicator"
+                },
+                {
+                    "defaultSettings": {
+                        "audioCodec": "opus",
+                        "audioSource": "default_output",
+                        "colorRange": "limited",
+                        "copyToClipboard": false,
+                        "directory": "",
+                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
+                        "frameRate": "60",
+                        "hideInactive": false,
+                        "iconColor": "none",
+                        "quality": "very_high",
+                        "resolution": "original",
+                        "showCursor": true,
+                        "videoCodec": "h264",
+                        "videoSource": "portal"
+                    },
+                    "id": "plugin:screen-recorder"
+                },
+                {
+                    "defaultSettings": {
+                        "currentIconName": "world-download",
+                        "hideOnZero": false,
+                        "updateIntervalMinutes": 30,
+                        "updateTerminalCommand": "foot -e"
+                    },
+                    "id": "plugin:update-count"
                 }
             ]
         }
@@ -316,21 +336,10 @@
                     "id": "Bluetooth"
                 },
                 {
+                    "id": "AirplaneMode"
+                },
+                {
                     "id": "PowerProfile"
-                },
-                {
-                    "id": "Notifications"
-                },
-                {
-                    "enableOnStateLogic": false,
-                    "generalTooltipText": "",
-                    "icon": "heart",
-                    "id": "CustomButton",
-                    "onClicked": "",
-                    "onMiddleClicked": "",
-                    "onRightClicked": "",
-                    "showExecTooltip": true,
-                    "stateChecksJson": "[]"
                 }
             ],
             "right": [
@@ -357,26 +366,7 @@
                     "stateChecksJson": "[{\"command\":\"~/.local/share/noctalia/get.sh\",\"icon\":\"moon\"}]"
                 },
                 {
-                    "defaultSettings": {
-                        "audioCodec": "opus",
-                        "audioSource": "default_output",
-                        "colorRange": "limited",
-                        "copyToClipboard": false,
-                        "directory": "",
-                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
-                        "frameRate": "60",
-                        "hideInactive": false,
-                        "iconColor": "none",
-                        "quality": "very_high",
-                        "resolution": "original",
-                        "showCursor": true,
-                        "videoCodec": "h264",
-                        "videoSource": "portal"
-                    },
-                    "id": "plugin:screen-recorder"
-                },
-                {
-                    "id": "AirplaneMode"
+                    "id": "Notifications"
                 }
             ]
         }
@@ -384,6 +374,7 @@
     "desktopWidgets": {
         "enabled": false,
         "gridSnap": false,
+        "gridSnapScale": false,
         "monitorWidgets": [
         ],
         "overviewEnabled": true
@@ -497,7 +488,7 @@
     "idle": {
         "customCommands": "[]",
         "enabled": true,
-        "fadeDuration": 3,
+        "fadeDuration": 2,
         "lockCommand": "",
         "lockTimeout": 360,
         "resumeLockCommand": "",
@@ -542,6 +533,10 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "nightTemp": "4000"
+    },
+    "noctaliaPerformance": {
+        "disableDesktopWidgets": true,
+        "disableWallpaper": true
     },
     "notifications": {
         "backgroundOpacity": 1,
@@ -653,7 +648,7 @@
         "showHeader": true,
         "showKeybinds": true
     },
-    "settingsVersion": 56,
+    "settingsVersion": 57,
     "systemMonitor": {
         "batteryCriticalThreshold": 5,
         "batteryWarningThreshold": 20,
@@ -690,9 +685,11 @@
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.8700000000000001,
         "panelsAttachedToBar": true,
+        "scrollbarAlwaysVisible": true,
         "settingsPanelMode": "attached",
         "settingsPanelSideBarCardStyle": false,
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "translucentWidgets": false
     },
     "wallpaper": {
         "automationEnabled": false,
