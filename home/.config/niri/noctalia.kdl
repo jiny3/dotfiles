@@ -1,0 +1,16 @@
+// Noctalia shell configuration.
+// Desktop bar, launcher, lock screen, and overview backdrop.
+
+// desktop bar
+spawn-at-startup "qs" "-c" "noctalia-shell"
+
+// Put swaybg inside the overview backdrop.
+layer-rule {
+    match namespace="^noctalia-overview*"
+    place-within-backdrop true
+}
+
+binds {
+    Mod+Space hotkey-overlay-title="toggle launcher" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+}
