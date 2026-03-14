@@ -44,7 +44,7 @@
         "barType": "floating",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0.9,
-        "contentPadding": 2,
+        "contentPadding": 0,
         "density": "comfortable",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
@@ -74,7 +74,7 @@
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
         "useSeparateOpacity": true,
-        "widgetSpacing": 6,
+        "widgetSpacing": 4,
         "widgets": {
             "center": [
                 {
