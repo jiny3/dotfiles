@@ -116,6 +116,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 setopt EXTENDED_HISTORY       # 记录时间戳
+setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS   # 删除重复项，只保留最新的
 setopt HIST_SAVE_NO_DUPS      # 保存文件时不存重复项
 setopt HIST_EXPIRE_DUPS_FIRST # 空间不足时先删重复的
