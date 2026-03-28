@@ -11,19 +11,6 @@ else
     CURSOR="Bibata-Modern-Ice"
 fi
 
-run_with_retry() {
-    local cmd=$1
-    for _ in {1..5}; do
-        # 尝试执行，并隐藏不必要的错误输出
-        if eval "$cmd" >/dev/null 2>&1; then
-            return 0
-        fi
-        sleep 1
-    done
-    echo "错误: 执行 '$cmd' 失败" >&2
-    return 1
-}
-
-run_with_retry "qs -c noctalia-shell ipc call wallpaper set $BACKGROUND all"
+qs -c noctalia-shell ipc call wallpaper set $BACKGROUND all
 # change cursor
 sed -i "s/xcursor-theme \"[^\"]*\"/xcursor-theme \"$CURSOR\"/" "$HOME/.config/niri/configs/misc.kdl"
