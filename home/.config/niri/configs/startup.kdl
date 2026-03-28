@@ -1,12 +1,3 @@
-// Startup processes and environment variables.
-environment {
-    // XMODIFIERS "@im=fcitx"
-    // QT_IM_MODULE "fcitx"
-    // GTK_IM_MODULE "wayland"
-    // SDL_IM_MODULE "fcitx"
-    EDITOR "nvim"
-}
-
 spawn-at-startup "niri-switch-daemon"
 // input method
 spawn-at-startup "fcitx5" "-d"

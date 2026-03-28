@@ -2,25 +2,13 @@
 // https://kdl.dev
 // https://yalter.github.io/niri/Configuration:-Introduction
 
-include "input.kdl"
-include "outputs.kdl"
-include "layout.kdl"
-include "startup.kdl"
-include "noctalia.kdl"
-include "animations.kdl"
-include "rules.kdl"
-include "keymaps.kdl"
-
-hotkey-overlay {
-    skip-at-startup
-}
-
-prefer-no-csd
-
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-gestures {
-    hot-corners {
-        off
-    }
-}
+include "configs/input.kdl"
+include "configs/outputs.kdl"
+include "configs/layout.kdl"
+include "configs/startup.kdl"
+include "configs/env.kdl"
+include "configs/animations.kdl"
+include "configs/rules.kdl"
+include "configs/keybinds.kdl"
+include "configs/misc.kdl"
+include "configs/noctalia.kdl"
