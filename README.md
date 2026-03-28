@@ -15,7 +15,7 @@
 | 输入法 | [Fcitx5](https://fcitx-im.org) |
 | 字体 | Maple Mono NF CN / Noto Sans CJK SC |
 | 登录管理器 | [Ly](https://github.com/fairyglade/ly) |
-| 容器 | Podman (Caddy + Vaultwarden + Alist) |
+| 容器 | Podman (Caddy + Alist) |
 | 代理 | [Mihomo](https://github.com/MetaCubeX/mihomo) (Clash) |
 
 ## 目录结构
@@ -24,22 +24,26 @@
 dotfiles/
 ├── home/               # 用户目录配置 (stow target: ~/)
 │   ├── .config/
+│   │   ├── fontconfig/       # 字体渲染与回退配置
 │   │   ├── ghostty/          # Ghostty 终端配置 + Catppuccin 主题
+│   │   ├── go/               # Go 语言环境配置
 │   │   ├── niri/             # Niri 窗口管理器配置
 │   │   ├── noctalia/         # Noctalia 面板/Dock/启动器配置
 │   │   ├── nvim/             # Neovim (LazyVim + Copilot)
-│   │   ├── yazi/             # Yazi 文件管理器 + 插件
-│   │   ├── fontconfig/       # 字体渲染与回退配置
 │   │   ├── opencode/         # OpenCode AI 工具配置
 │   │   ├── starship.toml     # Starship 提示符配置
 │   │   ├── systemd/user/     # 用户级 systemd 服务
-│   │   └── xdg-desktop-portal/
+│   │   ├── xdg-desktop-portal/
+│   │   └── yazi/             # Yazi 文件管理器 + 插件
 │   ├── .local/
 │   │   └── share/
 │   │       ├── fcitx5/themes/    # Fcitx5 Catppuccin 主题
 │   │       ├── flatpak/overrides/ # Flatpak 权限覆盖
-│   │       └── niri/             # DPI 自适应脚本
+│   │       ├── niri/             # DPI 自适应脚本
+│   │       └── noctalia/         # Noctalia 切换脚本
 │   ├── .ssh/             # SSH 密钥与主机配置
+│   ├── .gitconfig        # Git 配置
+│   ├── .gitignore        # Git 忽略规则
 │   ├── .zshrc            # Zsh 配置
 │   ├── .zimrc            # Zim 框架模块
 │   ├── .background       # 亮色壁纸
@@ -47,14 +51,15 @@ dotfiles/
 │   └── .face             # 用户头像
 ├── caddy/              # Caddy 反向代理配置
 │   └── config/
-│       └── Caddyfile         # vault.arch / files.arch / arch
+│       └── Caddyfile         # files.arch / arch
 ├── podman/             # Podman 容器编排
-│   └── compose.yml           # Caddy + Vaultwarden + Alist
+│   └── compose.yml           # Caddy + Alist
 ├── root/               # 系统级配置 (stow target: /)
 │   └── etc/
 │       ├── hosts             # 本地服务域名映射
 │       ├── ly/               # Ly 登录管理器配置 + 动画
 │       └── mihomo/           # Mihomo 代理规则配置
+├── test/               # 测试配置目录
 ├── mystow.sh           # Stow 管理脚本
 └── README.md
 ```
