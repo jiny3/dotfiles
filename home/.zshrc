@@ -131,7 +131,7 @@ setopt HIST_NO_STORE          # 不记录 history 命令本身
 # export
 export YSU_MESSAGE_POSITION="after"
 export BAT_CONFIG_PATH="$XDG_CONFIG_HOME:-~/.config/bat.conf"
-export PATH=$PATH:/usr/local/go/bin:~/.local/bin:~/.cargo/bin:/home/x/.opencode/bin
+export PATH=$PATH:/usr/local/go/bin:~/.local/bin:~/.cargo/bin:/home/x/.opencode/bin:~/go/bin:~/.npm-global/bin
 export EDITOR="nvim"
 
 # zoxide load
