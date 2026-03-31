@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "230b9c6"
-hash = "270915fa8282a19908449530ff66f7e2"
+rev = "1962818"
+hash = "26db011a778f261d730d4f5f8bf24b3f"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "eca1861"
-hash = "e519d894e94ded741e06aae4d4775981"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
 
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "cb6e8ec"
-hash = "424ada4807b20ccd4fc85d1d7c26d1e4"
+rev = "46a6b9f"
+hash = "771af2becc575a3f43d0542de823969d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "230b9c6"
-hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
+rev = "1962818"
+hash = "f0c8c378184d5f8abd1b095a443d336d"
 
 [[plugin.deps]]
 use = "AnirudhG07/plugins-yazi:copy-file-contents"
@@ -30,20 +30,25 @@ hash = "778941e7f1ebbacd60f4e254bb3c51de"
 
 [[plugin.deps]]
 use = "walldmtd/fs-usage"
-rev = "da38c3e"
-hash = "5a691c4fb17201eab2edb94643d324ae"
+rev = "4f4992b"
+hash = "61410fb3409c22990a52767c738c2722"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "230b9c6"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "1962818"
+hash = "6fa6a05a81c98dd000fbca3cca6e9682"
+
+[[plugin.deps]]
+use = "uhs-robert/sshfs"
+rev = "b4c7c5c"
+hash = "d1cd188c14a53d03ae4a87e6e40f7233"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "9e053d0"
-hash = "8eabb4e88096f10905a6df62cfaadbf4"
+rev = "9511cb0"
+hash = "7dfe41c9c3d9be76da8a844263d0bbed"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-latte"
-rev = "9e053d0"
-hash = "c6b710b2aa0fb9c6c7f1ec4db6146104"
+rev = "9511cb0"
+hash = "b8f46853c27707115f25f3423a47bd38"

@@ -27,3 +27,4 @@ require("copy-file-contents"):setup({
 require("fs-usage"):setup({
 	padding = { open = "", close = "" },
 })
+require("sshfs"):setup()

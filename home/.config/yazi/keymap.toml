@@ -56,4 +56,8 @@ prepend_keymap = [
         "d",
         "U",
     ], run = "plugin restore -- --interactive", desc = "Restore deleted (Interactive)" },
+    { on = [
+        "g",
+        "s",
+    ], run = "plugin sshfs -- menu", desc = "Open SSHFS options" },
 ]
