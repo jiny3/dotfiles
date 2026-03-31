@@ -1,0 +1,118 @@
+{
+    "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+    "agents": {
+        "sisyphus": {
+            "model": "anthropic/claude-opus-4-6",
+            "variant": "max",
+            "temperature": 0.1,
+            "fallback_models": [
+                "github-copilot/gemini-3.1-pro-preview",
+                "github-copilot/gpt-5.3-codex"
+            ]
+        },
+        "atlas": {
+            "model": "github-copilot/gpt-5.2",
+            "temperature": 0.1,
+            "fallback_models": [
+                "github-copilot/gemini-3-pro-preview",
+                "anthropic/claude-sonnet-4-5"
+            ]
+        },
+        "prometheus": {
+            "model": "anthropic/claude-opus-4-6",
+            "temperature": 0.1,
+            "fallback_models": [
+                "github-copilot/gpt-5.2"
+            ]
+        },
+        "metis": {
+            "model": "anthropic/claude-opus-4-6",
+            "temperature": 0.3,
+            "variant": "max",
+            "fallback_models": [
+                "github-copilot/gpt-5.2"
+            ]
+        },
+        "momus": {
+            "model": "github-copilot/gpt-5.2",
+            "temperature": 0.1,
+            "variant": "medium",
+            "fallback_models": [
+                "github-copilot/gemini-3-pro-preview",
+                "opencode/minimax-m2.5-free"
+            ]
+        },
+        "hephaestus": {
+            "model": "github-copilot/gpt-5.3-codex",
+            "temperature": 0.1,
+            "fallback_models": [
+                "github-copilot/gpt-5.2-codex"
+            ]
+        },
+        "oracle": {
+            "model": "github-copilot/gpt-5.2",
+            "temperature": 0.1,
+            "variant": "high",
+            "fallback_models": [
+                "google/gemini-3-pro-preview",
+                "anthropic/claude-opus-4-6"
+            ]
+        },
+        "librarian": {
+            "model": "opencode/minimax-m2.5-free",
+            "fallback_models": [
+                "zai-coding-plan/glm-4.7",
+                "github-copilot/gpt-5.3-codex-spark",
+                "gemini/gemini-3-flash-preview"
+            ]
+        },
+        "explore": {
+            "model": "opencode/mimo-v2-pro-free",
+            "fallback_models": [
+                "opencode/big-pickle",
+                "opencode/gpt-5-nano",
+                "opencode/minimax-m2.5-free"
+            ]
+        },
+        "multimodal-looker": {
+            "model": "opencode/mimo-v2-omni-free",
+            "fallback_models": [
+                "github-copilot/gemini-3-flash-preview",
+                "kimi-for-coding/k2p5"
+            ]
+        }
+    },
+    "categories": {
+        "quick": {
+            "model": "opencode/mimo-v2-pro-free",
+            "temperature": 0.1
+        },
+        "deep": {
+            "model": "github-copilot/gpt-5.3-codex",
+            "variant": "medium",
+            "temperature": 0.1
+        },
+        "ultrabrain": {
+            "model": "github-copilot/gpt-5.3-codex",
+            "variant": "xhigh",
+            "temperature": 0.1
+        },
+        "visual-engineering": {
+            "model": "github-copilot/gemini-3-pro-preview",
+            "temperature": 0.1
+        },
+        "writing": {
+            "model": "opencode/minimax-m2.5-free",
+            "temperature": 0.2
+        },
+        "unspecified-low": {
+            "model": "opencode/minimax-m2.5-free",
+            "temperature": 0.1
+        },
+        "unspecified-high": {
+            "model": "anthropic/claude-opus-4-6",
+            "variant": "max",
+            "temperature": 0.1
+        }
+    }
+}
