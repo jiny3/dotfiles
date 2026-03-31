@@ -1,5 +1,14 @@
+# init cache — avoid fork+exec on every shell open
+_zshrc_cache="$HOME/.cache/zsh"
+[[ -d $_zshrc_cache ]] || mkdir -p "$_zshrc_cache"
+_cache_eval() {
+  local name=$1; shift; local cache="$_zshrc_cache/$name" bin="$(command -v $1)"
+  [[ -f $cache && $cache -nt $bin ]] || "$@" > "$cache"
+  source "$cache"
+}
+
 # starship load
-eval "$(starship init zsh)"
+_cache_eval starship starship init zsh
 
 # Start configuration added by Zim Framework install {{{
 #
@@ -14,15 +23,9 @@ eval "$(starship init zsh)"
 # History
 #
 
-# Remove older command from the history if a duplicate is to be added.
-setopt HIST_IGNORE_ALL_DUPS
-
 #
 # Input/output
 #
-
-# Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -e
 
 # Prompt for spelling correction of commands.
 #setopt CORRECT
@@ -115,18 +118,9 @@ HISTFILE="$HOME/.zhistory"
 HISTSIZE=10000
 SAVEHIST=10000
 
-setopt EXTENDED_HISTORY       # 记录时间戳
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS   # 删除重复项，只保留最新的
-setopt HIST_SAVE_NO_DUPS      # 保存文件时不存重复项
-setopt HIST_EXPIRE_DUPS_FIRST # 空间不足时先删重复的
-
-setopt INC_APPEND_HISTORY     # 立即追加写入，防止掉电丢失
-setopt SHARE_HISTORY          # 多窗口实时同步历史
-setopt HIST_REDUCE_BLANKS     # 自动删除多余空格
-
-setopt HIST_IGNORE_SPACE      # 命令前加空格则不记录
-setopt HIST_NO_STORE          # 不记录 history 命令本身
+setopt EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS \
+       HIST_EXPIRE_DUPS_FIRST INC_APPEND_HISTORY SHARE_HISTORY \
+       HIST_REDUCE_BLANKS HIST_IGNORE_SPACE HIST_NO_STORE
 
 # export
 export YSU_MESSAGE_POSITION="after"
@@ -135,10 +129,10 @@ export PATH=$PATH:/usr/local/go/bin:~/.local/bin:~/.cargo/bin:/home/x/.opencode/
 export EDITOR="nvim"
 
 # zoxide load
-eval "$(zoxide init zsh --cmd z)"
+_cache_eval zoxide zoxide init zsh --cmd z
 # uv autocompletion
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
+_cache_eval uv-comp uv generate-shell-completion zsh
+_cache_eval uvx-comp uvx --generate-shell-completion zsh
 
 # aliases
 alias ls="eza --icons -a"
@@ -146,7 +140,7 @@ alias ll="eza --icons --long --header"
 alias la="eza --icons --long --header --all"
 alias tree="eza --tree"
 sudo() {
-    if [ $# -eq 0 ]; then
+    if (( $# == 0 )); then
         command sudo -E
     elif [[ "$1" == -* ]]; then
         command sudo "$@"
@@ -159,3 +153,12 @@ alias rmx="trash-put"
 
 # zvm
 bindkey -v
+
+# cd with yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	rm -f -- "$tmp"
+	[[ -n "$cwd" && "$cwd" != "$PWD" && -d "$cwd" ]] && builtin cd -- "$cwd"
+}
