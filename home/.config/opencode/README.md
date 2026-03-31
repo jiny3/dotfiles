@@ -17,6 +17,9 @@ This document records all enhancements made to the OpenCode configuration, servi
   tui.json         # TUI theme and scroll settings
   package.json     # Plugin SDK dependencies
   .gitignore       # Excludes node_modules and config.json
+
+~/.local/share/opencode/
+  auth.json        # OAuth tokens for providers like GitHub Copilot (git-ignored, backup manually)
 ```
 
 ---
@@ -50,6 +53,32 @@ After cloning this dotfiles repo, manually create `~/.config/opencode/config.jso
 ```
 
 > **Note:** `config.json` is listed in `.gitignore` and will NOT be committed to git.
+
+### GitHub Copilot (OAuth)
+
+GitHub Copilot uses OAuth device code flow instead of API keys. The token is stored in `~/.local/share/opencode/auth.json` (git-ignored).
+
+**First-time setup:**
+1. Run `/connect` in opencode → select "GitHub Copilot"
+2. Visit https://github.com/login/device and enter the code
+3. Token is saved automatically to `auth.json`
+
+**Restore steps:**
+
+After reinstalling, copy your backed-up `auth.json` to `~/.local/share/opencode/auth.json`:
+
+```json
+{
+  "github-copilot": {
+    "type": "oauth",
+    "refresh": "gho_YOUR_TOKEN_HERE",
+    "access": "gho_YOUR_TOKEN_HERE",
+    "expires": 0
+  }
+}
+```
+
+> **Note:** `auth.json` contains OAuth tokens and is git-ignored. Back it up to a secure location (e.g., password manager or private storage).
 
 ---
 

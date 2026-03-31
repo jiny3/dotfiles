@@ -1,24 +1,24 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "anthropic": {
-      "options": {
-        "apiKey": "{file:secrets/apikey}",
-        "baseURL": "{file:secrets/baseurl}"
-      }
+    "$schema": "https://opencode.ai/config.json",
+    "provider": {
+        "anthropic": {
+            "options": {
+                "apiKey": "{file:secrets/apikey}",
+                "baseURL": "{file:secrets/baseurl}"
+            }
+        },
+        "openai": {
+            "options": {
+                "apiKey": "{file:secrets/apikey}",
+                "baseURL": "{file:secrets/baseurl}"
+            }
+        }
     },
-    "openai": {
-      "options": {
-        "apiKey": "{file:secrets/apikey}",
-        "baseURL": "{file:secrets/baseurl}"
-      }
-    }
-  },
-  "plugin": [
-    "opencode-snip@latest",
-    "cc-safety-net@latest",
-    "@tarquinen/opencode-dcp@latest",
-    "opencode-agent-memory",
-    "oh-my-openagent@latest"
-  ]
+    "plugin": [
+        "opencode-snip@latest",
+        "cc-safety-net@latest",
+        "@tarquinen/opencode-dcp@latest",
+        "opencode-agent-memory",
+        "oh-my-openagent@latest"
+    ]
 }
