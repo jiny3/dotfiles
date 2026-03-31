@@ -273,7 +273,7 @@
         ]
     },
     "colorSchemes": {
-        "darkMode": true,
+        "darkMode": false,
         "generationMethod": "tonal-spot",
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -496,12 +496,12 @@
         "enabled": true,
         "fadeDuration": 2,
         "lockCommand": "",
-        "lockTimeout": 360,
+        "lockTimeout": 600,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 180,
+        "screenOffTimeout": 300,
         "suspendCommand": "",
         "suspendTimeout": 1800
     },
