@@ -2,6 +2,9 @@
 ratio = [1, 2, 4]
 linemode = "size"
 
+[preview]
+wrap = "yes"
+
 [[plugin.prepend_fetchers]]
 id = "git"
 url = "*"
