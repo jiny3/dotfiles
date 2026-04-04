@@ -6,113 +6,181 @@
             "variant": "max",
             "temperature": 0.1,
             "fallback_models": [
-                "github-copilot/gemini-3.1-pro-preview",
-                "github-copilot/gpt-5.3-codex"
+                "github-copilot/gpt-5.4",
+                "opencode/big-pickle"
             ]
         },
         "atlas": {
-            "model": "github-copilot/gpt-5.2",
+            "model": "anthropic/claude-sonnet-4-6",
             "temperature": 0.1,
             "fallback_models": [
-                "github-copilot/gemini-3-pro-preview",
-                "anthropic/claude-sonnet-4-5"
+                "github-copilot/gpt-5.4",
+                "opencode/qwen3.6-plus-free"
             ]
         },
         "prometheus": {
             "model": "anthropic/claude-opus-4-6",
+            "variant": "max",
             "temperature": 0.1,
+            "prompt_append": "Leverage deep & quick agents heavily, always in parallel.",
             "fallback_models": [
-                "github-copilot/gpt-5.2"
+                {
+                    "model": "github-copilot/gpt-5.4",
+                    "variant": "high"
+                },
+                "github-copilot/gemini-3.1-pro-preview"
             ]
         },
         "metis": {
-            "model": "anthropic/claude-opus-4-6",
+            "model": "github-copilot/gpt-5.4",
+            "variant": "high",
             "temperature": 0.3,
-            "variant": "max",
             "fallback_models": [
-                "github-copilot/gpt-5.2"
+                "github-copilot/gemini-3.1-pro-preview",
+                "anthropic/claude-opus-4-6"
             ]
         },
         "momus": {
-            "model": "github-copilot/gpt-5.2",
+            "model": "github-copilot/gpt-5.4",
+            "variant": "xhigh",
             "temperature": 0.1,
-            "variant": "medium",
             "fallback_models": [
-                "github-copilot/gemini-3-pro-preview",
-                "opencode/minimax-m2.5-free"
+                "anthropic/claude-opus-4-6",
+                {
+                    "model": "github-copilot/gemini-3.1-pro-preview",
+                    "variant": "high"
+                }
             ]
         },
         "hephaestus": {
-            "model": "github-copilot/gpt-5.3-codex",
+            "model": "github-copilot/gpt-5.4",
+            "variant": "medium",
             "temperature": 0.1,
             "fallback_models": [
-                "github-copilot/gpt-5.2-codex"
+                "github-copilot/gpt-5.3-codex",
+                "github-copilot/gpt-5.2"
             ]
         },
         "oracle": {
-            "model": "github-copilot/gpt-5.2",
-            "temperature": 0.1,
+            "model": "github-copilot/gpt-5.4",
             "variant": "high",
+            "temperature": 0.1,
             "fallback_models": [
-                "google/gemini-3-pro-preview",
+                {
+                    "model": "github-copilot/gemini-3.1-pro-preview",
+                    "variant": "high"
+                },
                 "anthropic/claude-opus-4-6"
             ]
         },
         "librarian": {
-            "model": "opencode/minimax-m2.5-free",
+            "model": "github-copilot/gpt-5.4-mini",
             "fallback_models": [
-                "zai-coding-plan/glm-4.7",
-                "github-copilot/gpt-5.3-codex-spark",
-                "gemini/gemini-3-flash-preview"
+                "github-copilot/gemini-3-flash-preview",
+                "opencode/minimax-m2.5-free",
+                "opencode/gpt-5-nano"
             ]
         },
         "explore": {
-            "model": "opencode/mimo-v2-pro-free",
+            "model": "github-copilot/grok-code-fast-1",
             "fallback_models": [
-                "opencode/big-pickle",
-                "opencode/gpt-5-nano",
-                "opencode/minimax-m2.5-free"
+                "opencode/minimax-m2.5-free",
+                "opencode/nemotron-3-super-free",
+                "opencode/gpt-5-nano"
             ]
         },
         "multimodal-looker": {
-            "model": "opencode/mimo-v2-omni-free",
+            "model": "github-copilot/gpt-5.4",
             "fallback_models": [
-                "github-copilot/gemini-3-flash-preview",
-                "kimi-for-coding/k2p5"
+                "github-copilot/gemini-3.1-pro-preview",
+                "github-copilot/gemini-3-flash-preview"
             ]
         }
     },
     "categories": {
         "quick": {
-            "model": "opencode/mimo-v2-pro-free",
-            "temperature": 0.1
+            "model": "github-copilot/gpt-5.4-mini",
+            "temperature": 0.1,
+            "fallback_models": [
+                "github-copilot/gemini-3-flash-preview",
+                "opencode/gpt-5-nano"
+            ]
         },
         "deep": {
-            "model": "github-copilot/gpt-5.3-codex",
+            "model": "github-copilot/gpt-5.4",
             "variant": "medium",
-            "temperature": 0.1
+            "temperature": 0.1,
+            "fallback_models": [
+                "anthropic/claude-opus-4-6",
+                "github-copilot/gemini-3.1-pro-preview"
+            ]
         },
         "ultrabrain": {
-            "model": "github-copilot/gpt-5.3-codex",
+            "model": "github-copilot/gpt-5.4",
             "variant": "xhigh",
-            "temperature": 0.1
+            "temperature": 0.1,
+            "fallback_models": [
+                {
+                    "model": "github-copilot/gemini-3.1-pro-preview",
+                    "variant": "high"
+                },
+                "anthropic/claude-opus-4-6"
+            ]
+        },
+        "artistry": {
+            "model": "github-copilot/gemini-3.1-pro-preview",
+            "variant": "high",
+            "temperature": 0.1,
+            "fallback_models": [
+                "anthropic/claude-opus-4-6",
+                "github-copilot/gpt-5.4"
+            ]
         },
         "visual-engineering": {
-            "model": "github-copilot/gemini-3-pro-preview",
-            "temperature": 0.1
+            "model": "github-copilot/gemini-3.1-pro-preview",
+            "variant": "high",
+            "temperature": 0.1,
+            "fallback_models": [
+                "anthropic/claude-opus-4-6",
+                "github-copilot/gpt-5.4"
+            ]
         },
         "writing": {
-            "model": "opencode/minimax-m2.5-free",
-            "temperature": 0.2
+            "model": "github-copilot/gemini-3-flash-preview",
+            "temperature": 0.2,
+            "fallback_models": [
+                "anthropic/claude-sonnet-4-6",
+                "opencode/minimax-m2.5-free"
+            ]
         },
         "unspecified-low": {
-            "model": "opencode/minimax-m2.5-free",
-            "temperature": 0.1
+            "model": "anthropic/claude-sonnet-4-6",
+            "temperature": 0.1,
+            "fallback_models": [
+                "github-copilot/gpt-5.4",
+                "opencode/minimax-m2.5-free"
+            ]
         },
         "unspecified-high": {
-            "model": "anthropic/claude-opus-4-6",
-            "variant": "max",
-            "temperature": 0.1
+            "model": "github-copilot/gpt-5.4",
+            "variant": "high",
+            "temperature": 0.1,
+            "fallback_models": [
+                "anthropic/claude-opus-4-6",
+                "github-copilot/gemini-3.1-pro-preview"
+            ]
         }
-    }
+    },
+    "background_task": {
+        "providerConcurrency": {
+            "anthropic": 3,
+            "github-copilot": 8,
+            "opencode": 10
+        },
+        "modelConcurrency": {
+            "anthropic/claude-opus-4-6": 2,
+            "github-copilot/gpt-5.4": 5
+        }
+    },
+    "runtime_fallback": true
 }
