@@ -3,7 +3,7 @@ _zshrc_cache="$HOME/.cache/zsh"
 [[ -d $_zshrc_cache ]] || mkdir -p "$_zshrc_cache"
 _cache_eval() {
   local name=$1; shift; local cache="$_zshrc_cache/$name" bin="$(command -v $1)"
-  [[ -f $cache && $cache -nt $bin ]] || "$@" > "$cache"
+  [[ -f $cache && $cache -nt $bin ]] || "$@" >! "$cache"
   source "$cache"
 }
 
