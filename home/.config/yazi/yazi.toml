@@ -8,9 +8,11 @@ wrap = "yes"
 [[plugin.prepend_fetchers]]
 id = "git"
 url = "*"
+group = "file"
 run = "git"
 
 [[plugin.prepend_fetchers]]
 id = "git"
 url = "*/"
+group = "dir"
 run = "git"
