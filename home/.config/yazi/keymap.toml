@@ -60,4 +60,8 @@ prepend_keymap = [
         "g",
         "s",
     ], run = "plugin sshfs -- menu", desc = "Open SSHFS options" },
+    { on = [
+        "g",
+        "w",
+    ], run = "cd /run/media/x/Win/Users/x", desc = "Go /run/media/x/Win/Users/x" },
 ]
