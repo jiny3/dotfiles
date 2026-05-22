@@ -20,5 +20,6 @@
         "@tarquinen/opencode-dcp@latest",
         "opencode-agent-memory",
         "oh-my-openagent@latest"
-    ]
+    ],
+    "lsp": true
 }
