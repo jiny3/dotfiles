@@ -1,0 +1,380 @@
+mixed-port: 7890
+mode: rule
+ipv6: true
+external-controller: 0.0.0.0:9090
+# web 面板的密钥
+secret: <gen_by_yourself>
+external-ui: ui
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  override-destination: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports:
+        - "80"
+        - "8080"
+    QUIC:
+      ports:
+        - "443"
+        - "8443"
+    TLS:
+      ports:
+        - "443"
+        - "8443"
+tcp-concurrent: true
+unified-delay: true
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  dns-hijack:
+    - any:53
+
+dns:
+  enable: true
+  ipv6: true
+  prefer-h3: true
+  cache-algorithm: arc
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  respect-rules: true
+  fake-ip-filter:
+    - GEOSITE,private,real-ip
+    - GEOSITE,cn,real-ip
+    - GEOSITE,category-ntp,real-ip
+    - DOMAIN-SUFFIX,gnome.org,real-ip
+    - DOMAIN-SUFFIX,archlinux.org,real-ip
+    - MATCH,fake-ip
+  fake-ip-filter-mode: rule
+  hosts:
+    "*.cs101.gbu.edu.cn": 10.10.1.120
+    cs101.gbu.edu.cn: 10.10.1.120
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  # Default for foreign domains (encrypted, abroad)
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  # Resolve proxy node hostnames — must use CN DNS to avoid chicken-and-egg
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  # CN / private domains use CN DNS for correct CDN routing
+  nameserver-policy:
+    "geosite:cn,private":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "+.gnome.org,+.archlinux.org":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+find-process-mode: "off"
+geo-auto-update: true
+geo-update-interval: 24
+geodata-loader: standard
+geodata-mode: true
+geox-url:
+  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+
+x-provider-anchors:
+  health-check: &provider-health-check
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+
+proxy-providers:
+  ict:
+    <<: *provider-health-check
+    type: http
+    url: <xxxx>
+    interval: 86400
+    path: ./proxies/ict.yaml
+
+  me:
+    <<: *provider-health-check
+    type: http
+    url: <xxxx>
+    interval: 86400
+    path: ./proxies/me.yaml
+
+  lzl:
+    <<: *provider-health-check
+    type: http
+    url: <xxxx>
+    interval: 86400
+    path: ./proxies/lzl.yaml
+
+# Anchors (YAML-only; mihomo ignores unknown top-level keys).
+# Keep DRY: each rule-provider below only needs name, path, url.
+x-rule-anchors:
+  mrs-domain: &mrs-domain
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+  mrs-ipcidr: &mrs-ipcidr
+    type: http
+    behavior: ipcidr
+    format: mrs
+    interval: 86400
+
+rule-providers:
+  # ---- CN / private (replace built-in GEOSITE/GEOIP) ----
+  private-ip:
+    <<: *mrs-ipcidr
+    path: ./rules/private-ip.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs
+  cn-domain:
+    <<: *mrs-domain
+    path: ./rules/cn-domain.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs
+  cn-ip:
+    <<: *mrs-ipcidr
+    path: ./rules/cn-ip.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs
+
+  # ---- Common foreign services ----
+  gfw:
+    <<: *mrs-domain
+    path: ./rules/gfw.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/gfw.mrs
+  openai:
+    <<: *mrs-domain
+    path: ./rules/openai.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs
+  google-gemini:
+    <<: *mrs-domain
+    path: ./rules/google-gemini.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs
+  github:
+    <<: *mrs-domain
+    path: ./rules/github.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs
+  telegram:
+    <<: *mrs-domain
+    path: ./rules/telegram.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs
+  telegram-ip:
+    <<: *mrs-ipcidr
+    path: ./rules/telegram-ip.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs
+
+proxy-groups:
+  # ===== Select groups (user-facing) =====
+  - name: Fallback
+    type: select
+    proxies:
+      - ICT
+      - ME
+      - LZL
+      - DIRECT
+  - name: ICT
+    type: select
+    use:
+      - ict
+  - name: ME
+    type: select
+    use:
+      - me
+  - name: LZL
+    type: select
+    use:
+      - lzl
+
+  # ===== Top-level + per-service: each has own AUTO, all share Fallback =====
+  - name: PROXY
+    type: fallback
+    proxies:
+      - PROXY-AUTO
+      - Fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+    lazy: false
+  - name: PROXY-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - ict
+      - me
+      - lzl
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+
+  - name: OpenAI
+    type: fallback
+    proxies:
+      - OpenAI-AUTO
+      - Fallback
+    url: https://chat.openai.com/cdn-cgi/trace
+    interval: 60
+    lazy: false
+  - name: OpenAI-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - ict
+      - me
+      - lzl
+    url: https://chat.openai.com/cdn-cgi/trace
+    expected-status: "200"
+    interval: 180
+    tolerance: 50
+
+  - name: Gemini
+    type: fallback
+    proxies:
+      - Gemini-AUTO
+      - Fallback
+    url: https://gemini.google.com/
+    interval: 60
+    lazy: false
+  - name: Gemini-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - ict
+      - me
+      - lzl
+    url: https://gemini.google.com/
+    expected-status: "200"
+    interval: 180
+    tolerance: 50
+
+  - name: GitHub
+    type: fallback
+    proxies:
+      - GitHub-AUTO
+      - Fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+    lazy: false
+  - name: GitHub-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - ict
+      - me
+      - lzl
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+
+  # Telegram-AUTO excludes ICT. Fallback is shared — if you set Fallback to ICT,
+  # TG would use it when AUTO fails.
+  - name: Telegram
+    type: fallback
+    proxies:
+      - Telegram-AUTO
+      - Fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+    lazy: false
+  - name: Telegram-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - me
+      - lzl
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+
+  - name: GFW
+    type: fallback
+    proxies:
+      - GFW-AUTO
+      - Fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 60
+    lazy: false
+  - name: GFW-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - ict
+      - me
+      - lzl
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+
+  # ICT-only auto group (used by ICT-forced rules)
+  - name: ICT-AUTO
+    type: url-test
+    hidden: true
+    use:
+      - ict
+    interval: 300
+    tolerance: 50
+
+rules:
+  # networkManager direct
+  - DOMAIN,nmcheck.gnome.org,DIRECT
+  - DOMAIN,ping.archlinux.org,DIRECT
+
+  # ICT-specific direct / proxy domains
+  - DOMAIN,gw.ict.ac.cn,DIRECT
+  - DOMAIN,localhost.weixin.qq.com,DIRECT
+  - DOMAIN-SUFFIX,tailscale.com,DIRECT
+  - DOMAIN,git.cs.ac.cn,ICT-AUTO
+  - DOMAIN,s3.nj.cs.ac.cn,ICT-AUTO
+  - DOMAIN,s3.bj.cs.ac.cn,ICT-AUTO
+  - DOMAIN,s3.ictbj.cs.ac.cn,ICT-AUTO
+  - DOMAIN-SUFFIX,ict.ac.cn,ICT-AUTO
+  - DOMAIN-SUFFIX,cs101.gbu.edu.cn,ICT-AUTO
+  - DOMAIN-SUFFIX,alibaba-inc.com,ICT-AUTO
+  - DOMAIN-SUFFIX,byr.pt,ICT-AUTO
+  - DOMAIN-SUFFIX,acm.org,ICT-AUTO
+  - DOMAIN-SUFFIX,ieee.org,ICT-AUTO
+  - DOMAIN-SUFFIX,sciencedirect.com,ICT-AUTO
+
+  # Foreign services → dedicated service groups
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,openai,OpenAI
+  - RULE-SET,google-gemini,Gemini
+  - RULE-SET,github,GitHub
+  - RULE-SET,gfw,GFW
+
+  # CN domains direct
+  - RULE-SET,cn-domain,DIRECT
+
+  # ---- IP rules after (may trigger DNS resolution) ----
+
+  # ICT campus / internal networks — force through ict subscription
+  - IP-CIDR,10.128.185.0/24,ICT-AUTO,no-resolve
+  - IP-CIDR,10.208.104.0/24,ICT-AUTO,no-resolve
+  - IP-CIDR,10.208.8.0/24,ICT-AUTO,no-resolve
+  - IP-CIDR,10.156.128.0/24,ICT-AUTO,no-resolve
+  - IP-CIDR,10.156.185.0/24,ICT-AUTO,no-resolve
+  - IP-CIDR,10.5.150.0/24,ICT-AUTO,no-resolve
+  - IP-CIDR,10.10.1.120/30,ICT-AUTO,no-resolve
+  - IP-CIDR,9.0.0.0/16,ICT-AUTO,no-resolve
+  - IP-CIDR,11.0.0.0/16,ICT-AUTO,no-resolve
+  - IP-CIDR,29.0.0.0/16,ICT-AUTO,no-resolve
+  - IP-CIDR,30.0.0.0/16,ICT-AUTO,no-resolve
+  - IP-CIDR,210.76.211.11/32,ICT-AUTO,no-resolve
+  - IP-CIDR,47.117.138.0/24,ICT-AUTO,no-resolve
+
+  # Telegram IPs (DNS may be unreliable for telegram domains)
+  - RULE-SET,telegram-ip,Telegram,no-resolve
+
+  # Private / CN IPs direct
+  - RULE-SET,private-ip,DIRECT,no-resolve
+  - RULE-SET,cn-ip,DIRECT,no-resolve
+
+  - MATCH,PROXY
