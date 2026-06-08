@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.78.0",
+  "lastChangelogVersion": "0.78.1",
   "defaultProvider": "openai",
   "defaultModel": "gpt-5.5",
   "enabledModels": [
@@ -8,5 +8,12 @@
   ],
   "defaultThinkingLevel": "xhigh",
   "doubleEscapeAction": "tree",
-  "theme": "catppuccin-mocha"
+  "theme": "catppuccin-mocha",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:context-mode"
+  ],
+  "retrospective": {
+    "model": "openai/gpt-5.5"
+  }
 }

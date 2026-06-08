@@ -1,0 +1,19 @@
+{
+  "name": "pi-tavily",
+  "version": "1.0.0",
+  "description": "Pi extension for web search using the Tavily JavaScript SDK",
+  "type": "module",
+  "keywords": ["pi-package"],
+  "pi": {
+    "extensions": ["./index.ts"]
+  },
+  "dependencies": {
+    "@tavily/core": "^0.7.5"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "license": "MIT"
+}
