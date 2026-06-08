@@ -1,0 +1,7 @@
+spawn-at-startup "niri-switch-daemon"
+// input method
+spawn-at-startup "fcitx5" "-d"
+// run a terminal
+spawn-at-startup "ghostty"
+// xft dpi daemon
+spawn-at-startup "~/.local/share/niri/dpi-daemon.sh"

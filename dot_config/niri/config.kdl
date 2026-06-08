@@ -1,0 +1,14 @@
+// Niri configuration - split into modules.
+// https://kdl.dev
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+include "configs/input.kdl"
+include "configs/outputs.kdl"
+include "configs/layout.kdl"
+include "configs/startup.kdl"
+include "configs/env.kdl"
+include "configs/animations.kdl"
+include "configs/rules.kdl"
+include "configs/keybinds.kdl"
+include "configs/misc.kdl"
+include "configs/noctalia.kdl"

@@ -1,0 +1,22 @@
+[Unit]
+Description=nanobot gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/x/nanobot
+ExecStart=/home/x/nanobot/.venv/bin/nanobot gateway
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+# Security / sandboxing (safe defaults for a user service)
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/x/.nanobot
+
+[Install]
+WantedBy=default.target

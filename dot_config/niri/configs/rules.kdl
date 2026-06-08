@@ -1,0 +1,58 @@
+// Window rules.
+// https://yalter.github.io/niri/Configuration:-Window-Rules
+
+// Block out password managers from screen capture.
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Default window appearance: rounded corners and slight transparency.
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+    opacity 0.92
+    draw-border-with-background false
+}
+
+// zen
+window-rule {
+    match app-id=r#"zen"#
+    open-maximized true
+    opacity 1.0
+}
+
+// satty
+window-rule {
+    match app-id=r#"satty"#
+    opacity 1.0
+}
+
+// ghostty
+window-rule {
+    match app-id=r#"ghostty"#
+    default-column-width { proportion 0.33333; }
+}
+
+// wechat
+window-rule {
+    match app-id=r#"wechat"#
+    default-column-width { proportion 0.33333; }
+}
+
+// virt-manager
+window-rule {
+    match app-id=r#"virt-manager"#
+    opacity 1.0
+}
+
+// mpv
+window-rule {
+    match app-id=r#"mpv"#
+    opacity 1.0
+}
