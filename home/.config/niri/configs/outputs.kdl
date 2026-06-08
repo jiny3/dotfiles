@@ -2,7 +2,6 @@
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // You can find output names by running `niri msg outputs` while inside a niri instance.
-
 output "eDP-1" {
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 2
@@ -24,8 +23,10 @@ output "eDP-1" {
 }
 
 output "DP-1" {
+    focus-at-startup
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
+    mode "1920x1080@100.00"
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.

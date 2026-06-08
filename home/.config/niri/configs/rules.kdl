@@ -16,7 +16,7 @@ window-rule {
 window-rule {
     geometry-corner-radius 6
     clip-to-geometry true
-    opacity 0.95
+    opacity 0.92
     draw-border-with-background false
 }
 
@@ -48,5 +48,11 @@ window-rule {
 // virt-manager
 window-rule {
     match app-id=r#"virt-manager"#
+    opacity 1.0
+}
+
+// mpv
+window-rule {
+    match app-id=r#"mpv"#
     opacity 1.0
 }
