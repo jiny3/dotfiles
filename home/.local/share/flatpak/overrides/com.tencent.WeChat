@@ -1,2 +1,6 @@
 [Context]
-filesystems=~/Downloads
+filesystems=~/Videos;~/Documents;~/Pictures;~/Downloads
+
+[Environment]
+QT_QPA_PLATFORMTHEME=gnome
+XDG_CURRENT_DESKTOP=GNOME
