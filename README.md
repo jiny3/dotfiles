@@ -2,7 +2,7 @@
 
 个人 dotfiles 仓库，使用 [chezmoi](https://www.chezmoi.io/) 管理。当前配置主要面向一套 Wayland / Niri 桌面环境，并覆盖 Shell、终端、编辑器、文件管理器、输入法主题、AI agent 配置与系统级配置同步脚本。
 
-> 这是个人配置仓库，不是通用发行版。配置中存在少量硬编码路径（例如 `/home/x`、`/run/media/x/...`），迁移到其他用户名或机器前需要先检查并调整。
+> 这是个人配置仓库，不是通用发行版。多数用户名路径已通过 chezmoi 模板或运行时变量渲染；显示器布局、本地代理、字体和系统级软链接脚本仍然带有机器偏好，迁移前需要检查。
 
 ## 主要内容
 
@@ -215,7 +215,7 @@ git status --short
 
 ## Yazi 快捷键摘记
 
-完整配置见 `dot_config/yazi/keymap.toml`。
+完整配置见 `dot_config/yazi/keymap.toml.tmpl`（目标文件仍渲染为 `~/.config/yazi/keymap.toml`）。
 
 | 快捷键 | 动作 |
 | --- | --- |
@@ -261,11 +261,13 @@ git status --short
 
 迁移或给其他机器使用前，建议检查：
 
-- `dot_zshrc` 中的 `PATH`：包含 `/home/x/.opencode/bin`、`~/go/bin`、`~/.npm-global/bin` 等。
-- `dot_config/systemd/user/nanobot-gateway.service`：依赖 `/home/x/nanobot`。
-- `dot_config/niri/configs/outputs.kdl`：包含 `eDP-1`、`DP-1` 及固定分辨率/缩放。
-- `dot_config/yazi/keymap.toml`：`g w` 指向 `/run/media/x/Win/Users/x`。
+- `dot_zshrc` 中的 `PATH`：使用 `$HOME` 拼接，但仍假设 Go、opencode、cargo、npm global 等工具目录存在。
+- `dot_config/systemd/user/nanobot-gateway.service`：使用 systemd `%h`，但仍假设 nanobot 项目位于 `~/nanobot`。
+- `dot_config/niri/configs/outputs.kdl.tmpl`：当前只为 hostname `archlinux` 渲染 `eDP-1` / `DP-1` 的固定分辨率、缩放和位置；其他主机默认不生成输出覆盖。
+- `dot_config/yazi/keymap.toml.tmpl`：`g w` 使用 `.chezmoi.username` 生成 Windows 挂载目录，若 Windows 用户名不同需要改成独立 chezmoi data 变量。
+- `dot_config/noctalia/settings.json.tmpl`：头像、壁纸和 hook 路径使用 `.chezmoi.homeDir` 渲染；字体、城市和部分桌面偏好仍是个人选择。
+- `dot_local/share/private_flatpak/overrides/com.reqable.Reqable`：本地代理固定为 `127.0.0.1:9000`，仅适合本机 Reqable 工作流。
 - `dot_config/ghostty/config`：字体为 `Maple Mono NF CN`。
 - `run_once_after_sync-root-filesystem.sh`：会通过 `sudo ln -sf` 覆盖创建系统路径软链接。
 
-如果要提高可移植性，优先把这些路径改成 chezmoi template，根据 hostname / username 分支渲染。
+如果要继续提高可移植性，优先为 Windows 用户名、本地代理端口和主机显示器布局增加显式 chezmoi data，而不是继续写死在配置正文里。

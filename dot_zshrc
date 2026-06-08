@@ -125,8 +125,8 @@ setopt EXTENDED_HISTORY HIST_IGNORE_ALL_DUPS HIST_SAVE_NO_DUPS \
 
 # export
 export YSU_MESSAGE_POSITION="after"
-export BAT_CONFIG_PATH="$XDG_CONFIG_HOME:-~/.config/bat.conf"
-export PATH=$PATH:/usr/local/go/bin:~/.local/bin:~/.cargo/bin:/home/x/.opencode/bin:~/go/bin:~/.npm-global/bin
+export BAT_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/bat.conf"
+export PATH="$PATH:/usr/local/go/bin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/go/bin:$HOME/.npm-global/bin"
 export EDITOR="nvim"
 
 # zoxide load
