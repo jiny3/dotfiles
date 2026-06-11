@@ -1,27 +1,44 @@
 #!/bin/bash
 
 update_xft_dpi() {
-    local screen_id scale dpi
-    screen_id=$(niri msg --json workspaces | jq -r '.[] | select(.is_focused == true) | .output' | head -n 1)
+    local output scale dpi
 
-    if [[ -z "$screen_id" || "$screen_id" == "null" ]]; then
-        dpi=96
-    else
-        scale=$(niri msg --json outputs | jq -r --arg output "$screen_id" '
-            if type == "object" then (.[$output].scale // 1)
-            elif type == "array" then ([.[] | select(.name == $output).scale][0] // 1)
-            else 1 end
-        ' 2>/dev/null)
+    output=$(
+        niri msg -j workspaces |
+            jq -r '.[] | select(.is_focused) | .output' |
+            head -n1
+    )
 
-        if [[ -z "$scale" || "$scale" == "null" ]]; then
-            scale=1
-        fi
+    [[ -z "$output" ]] && return
 
-        dpi=$(awk -v scale="$scale" 'BEGIN { printf "%d", (scale * 96) + 0.5 }')
+    scale=$(
+        niri msg -j outputs |
+            jq -r --arg output "$output" '
+            .[$output].logical.scale // 1
+        '
+    )
+
+    dpi=$(
+        awk -v scale="$scale" \
+            'BEGIN { printf "%d", scale * 96 + 0.5 }'
+    )
+
+    if [[ "$dpi" != "$last_dpi" ]]; then
+        echo "Setting Xft.dpi=$dpi (scale=$scale, output=$output)"
+        echo "Xft.dpi: $dpi" | xrdb -merge
+        last_dpi="$dpi"
     fi
-
-    echo "Xft.dpi: $dpi" | xrdb -merge
 }
+
+update_xft_dpi
+
+niri msg --json event-stream | jq --unbuffered -r 'keys[]' | while read -r event; do
+    case "$event" in
+    "WorkspaceActivated" | "WorkspacesChanged" | "OutputsChanged")
+        update_xft_dpi
+        ;;
+    esac
+done
 
 update_xft_dpi
 
