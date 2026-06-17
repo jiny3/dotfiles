@@ -1,12 +1,16 @@
 {
-  "lastChangelogVersion": "0.79.3",
-  "defaultProvider": "openai",
-  "defaultModel": "gpt-5.5",
+  "lastChangelogVersion": "0.79.4",
+  "defaultProvider": "opencode",
+  "defaultModel": "mimo-v2.5-free",
   "enabledModels": [
     "groq/llama-3.3-70b-versatile",
-    "openai/gpt-5.5"
+    "openai/gpt-5.5",
+    "opencode/north-mini-code-free",
+    "opencode/nemotron-3-ultra-free",
+    "opencode/mimo-v2.5-free",
+    "opencode/deepseek-v4-flash-free"
   ],
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "high",
   "doubleEscapeAction": "tree",
   "theme": "catppuccin-mocha",
   "packages": [
@@ -18,5 +22,10 @@
   ],
   "retrospective": {
     "model": "openai/gpt-5.5"
+  },
+  "compactionModel": {
+    "enabled": true,
+    "model": "opencode/mimo-v2.5-free",
+    "thinkingLevel": "high"
   }
 }
